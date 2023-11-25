@@ -1,2 +1,51 @@
 Given a bitonic sequence A of N distinct elements, write a program to find a given element B in the bitonic sequence in O(logN) time..
+Ans :1--
+public class Solution {
+    public int solve(int[] A, int B) {
+      int maxi= max_elm(A);
+       BS(A,B,0,maxi);
+       BS(A,B,maxi+1,A.length-1);
+       return -1;
+       
+    }
+    public int BS(int A[],int B,int si,int ed)
+    {
+        
+        while(si<=ed)
+        {
+            int mid=(si+ed)/2;
+            if(A[mid]==B)
+            {
+                return mid;
+            }
+            else if(A[mid]<B)
+            {
+                si=mid+1;
+        }
+        else
+        {
+            ed=mid-1;
+        }
+            
+        }
+        return -1;
+    }
+    public static int max_elm(int A[])
+    {
+        int si=0;
+        int ed=A.length-1;
+        int max=0;
+        while(si<=ed)
+        {
+            int mid=(si+ed)/2;
+            if(A[mid]>A[max])
+            {
+                max=mid;
+                si=mid+1;
+            }
+        }
+        return max;
+    }
+}
+
 
